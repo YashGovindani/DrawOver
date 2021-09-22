@@ -4,7 +4,6 @@
 #include <QScreen>
 #include <QRect>
 #include <QGraphicsDropShadowEffect>
-//#include "initialview.h"
 #include <QTimer>
 #include <QDebug>
 
@@ -65,17 +64,13 @@ void LoadingView::timerEvent(QTimerEvent *)
     this->timerEventTime += 2000;
     if(this->isCompleted && this->timerEventTime > this->runTimeDuration)
     {
-        //this->hide();
-        //((InitialView *)this->initialView)->show();
         killTimer(this->timerId);
-        //delete this;
     }
 }
 
-void LoadingView::setCompleted(QWidget *initialView)
+void LoadingView::setCompleted()
 {
     this->isCompleted = true;
-    this->initialView = initialView;
 }
 
 void LoadingView::mousePressEvent(QMouseEvent *)
@@ -92,7 +87,7 @@ void LoadingView::mouseMoveEvent(QMouseEvent *)
 void LoadingView::mouseReleaseEvent(QMouseEvent *)
 {
     this->ui->frame->setStyleSheet(QString("border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36); "));
-    if(moved || !isCompleted) return;
+    if(moved || !isCompleted || this->timerEventTime <= this->runTimeDuration) return;
     this->close(); // this->hide();
     delete this;
 }

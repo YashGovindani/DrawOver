@@ -17,7 +17,7 @@ public:
     explicit LoadingView(QWidget *parent = nullptr);
     void setInfo(QString);
     void timerEvent(QTimerEvent *);
-    void setCompleted(QWidget *);
+    void setCompleted();
     void mousePressEvent(QMouseEvent*);
     void mouseMoveEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);
@@ -29,7 +29,6 @@ private:
     int timerId;
     int runTimeDuration;
     bool isCompleted;
-    QWidget *initialView;
     int timerEventTime;
     bool moved;
     QString cornerRadius;
