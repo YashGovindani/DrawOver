@@ -1,4 +1,5 @@
 #include "glassboard.h"
+#include "loadingview.h"
 
 GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
 {
