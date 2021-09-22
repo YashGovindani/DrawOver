@@ -14,10 +14,10 @@
 
 void onBackToApplicationButtonClicked()
 {
-    BubbleButton *bubble = BubbleButton::get();
-    bubble->compressAction();
-    QTimer::singleShot(400, bubble, [=](){
-        bubble->close();
+    BubbleButton *bubbleButton = BubbleButton::get();
+    bubbleButton->compressAction();
+    QTimer::singleShot(400, bubbleButton, [=](){
+        bubbleButton->close();
         //Presentation::get(bubble)->showFullScreenView();
     });
 }
@@ -32,6 +32,9 @@ void onQuitButtonClicked()
 {
     BubbleButton::get()->getA()->quit();
 }
+
+void onPencButtonClicked()
+{}
 
 BubbleButton * BubbleButton::bubbleButton = nullptr;
 
@@ -70,11 +73,12 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     int smallButtonY = y() + radius -smallButtonRadius;
     QString smallButtonCornerRadius = QString::number(smallButtonRadius);
     QString smallButtonStyleSheet = QString("QPushButton{border-top-left-radius : ") + smallButtonCornerRadius + QString("; border-top-right-radius : ") + smallButtonCornerRadius + QString("; border-bottom-right-radius : ") + smallButtonCornerRadius + QString("; border-bottom-left-radius : ") + smallButtonCornerRadius + QString("; background-color : rgb(32, 33, 36);} QPushButton:hover{background-color : rgb(255, 255, 255)} QPushButton:pressed{background-color : rgb(23, 100, 189)}");
-    button1.setStyleSheet(smallButtonStyleSheet);
-    button1.setIcon(QIcon(QPixmap(QString(":/bubble/images/board.png"))));
-    button1.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    button1.setAttribute(Qt::WA_TranslucentBackground);
-    button1.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    penButton.setStyleSheet(smallButtonStyleSheet);
+    penButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/board.png"))));
+    penButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    penButton.setAttribute(Qt::WA_TranslucentBackground);
+    penButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    penButton.setClickEvent(onPencButtonClicked);
     newBoardButton.setStyleSheet(smallButtonStyleSheet);
     newBoardButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/board.png"))));
     newBoardButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
@@ -116,13 +120,13 @@ void BubbleButton::compressAction()
     int smallButtonWidth = quitButton.width();
     int smallButtonHeight = quitButton.height();
     QRect startRect(startX, startY, smallButtonWidth, smallButtonHeight);
-    QPropertyAnimation *animation = new QPropertyAnimation(&button1, "geometry", this);
+    QPropertyAnimation *animation = new QPropertyAnimation(&penButton, "geometry", this);
     animation->setDuration(100);
     animation->setStartValue(backToApplicationButton.geometry());
     animation->setEndValue(startRect);
     animation->start(QPropertyAnimation::DeleteWhenStopped);
     QTimer::singleShot(100, this, [=](){
-        button1.close();
+        penButton.close();
         QPropertyAnimation *animation = new QPropertyAnimation(&backToApplicationButton, "geometry", this);
         animation->setDuration(100);
         animation->setStartValue(backToApplicationButton.geometry());
@@ -241,12 +245,12 @@ void BubbleButton::onClick()
         QRect startRect(startX, startY, smallButtonWidth, smallButtonHeight);
         int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(4*22))/(double)(9*7))));
         int endY = startY - (int)(((double)expandedRadius)*sin(((double)(4*22))/(double)(9*7)));
-        QPropertyAnimation *animation = new QPropertyAnimation(&button1, "geometry", this);
+        QPropertyAnimation *animation = new QPropertyAnimation(&penButton, "geometry", this);
         animation->setDuration(100);
         animation->setStartValue(startRect);
         animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
         animation->start(QPropertyAnimation::DeleteWhenStopped);
-        button1.show();
+        penButton.show();
         QTimer::singleShot(100, this, [=](){
             int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(2*22))/(double)(3*7))));
             int endY = startY - (int)(((double)expandedRadius)*sin(((double)(2*22))/(double)(3*7)));

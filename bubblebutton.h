@@ -20,7 +20,7 @@ private:
     bool moved;
     bool expanded;
     QString cornerRadius;
-    MiniBubbleButton button1;
+    MiniBubbleButton penButton;
     MiniBubbleButton newBoardButton;
     MiniBubbleButton screenshotButton;
     MiniBubbleButton backToApplicationButton;
