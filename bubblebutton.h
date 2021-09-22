@@ -1,7 +1,7 @@
 #ifndef BUBBLEBUTTON_H
 #define BUBBLEBUTTON_H
 
-//#include "minibubblebutton.h"
+#include "minibubblebutton.h"
 #include <QPushButton>
 #include <QGraphicsDropShadowEffect>
 #include <QPaintEvent>
@@ -20,10 +20,10 @@ private:
     bool moved;
     bool expanded;
     QString cornerRadius;
-    //MiniBubbleButton newBoardButton;
-    //MiniBubbleButton screenshotButton;
-    //MiniBubbleButton backToApplicationButton;
-    //MiniBubbleButton quitButton;
+    MiniBubbleButton newBoardButton;
+    MiniBubbleButton screenshotButton;
+    MiniBubbleButton backToApplicationButton;
+    MiniBubbleButton quitButton;
     QApplication *a;
 public:
     static BubbleButton * get(QWidget *loadingView = nullptr);

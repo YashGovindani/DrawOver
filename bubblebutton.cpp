@@ -71,7 +71,7 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     int smallButtonY = y() + radius -smallButtonRadius;
     QString smallButtonCornerRadius = QString::number(smallButtonRadius);
     QString smallButtonStyleSheet = QString("QPushButton{border-top-left-radius : ") + smallButtonCornerRadius + QString("; border-top-right-radius : ") + smallButtonCornerRadius + QString("; border-bottom-right-radius : ") + smallButtonCornerRadius + QString("; border-bottom-left-radius : ") + smallButtonCornerRadius + QString("; background-color : rgb(32, 33, 36);} QPushButton:hover{background-color : rgb(255, 255, 255)} QPushButton:pressed{background-color : rgb(23, 100, 189)}");
-    /*newBoardButton.setStyleSheet(smallButtonStyleSheet);
+    newBoardButton.setStyleSheet(smallButtonStyleSheet);
     newBoardButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/board.png"))));
     newBoardButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     newBoardButton.setAttribute(Qt::WA_TranslucentBackground);
@@ -94,13 +94,13 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     quitButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     quitButton.setAttribute(Qt::WA_TranslucentBackground);
     quitButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
-    quitButton.setClickEvent(onQuitButtonClicked);*/
+    quitButton.setClickEvent(onQuitButtonClicked);
     expanded = false;
 }
 
 void BubbleButton::compressAction()
 {
-    /*int radius = width()/2;
+    int radius = width()/2;
     int smallButtonRadius = quitButton.width()/2;
     int startX = x() + radius - smallButtonRadius;
     int startY = y() + radius - smallButtonRadius;
@@ -136,7 +136,7 @@ void BubbleButton::compressAction()
                 QTimer::singleShot(100, this, [=](){quitButton.close();});
             });
         });
-    });*/
+    });
     expanded = false;
 }
 
@@ -200,7 +200,7 @@ void BubbleButton::mouseReleaseEvent(QMouseEvent *)
 
 void BubbleButton::onClick()
 {
-    /*if(!expanded)
+    if(!expanded)
     {
         QScreen *screen = QGuiApplication::primaryScreen();
         QRect screenGeometry = screen->geometry();
@@ -253,7 +253,7 @@ void BubbleButton::onClick()
             });
         });
         expanded = true;
-    }else compressAction();*/
+    }else compressAction();
 }
 
 BubbleButton::~BubbleButton()
