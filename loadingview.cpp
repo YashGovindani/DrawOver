@@ -93,7 +93,7 @@ void LoadingView::mouseReleaseEvent(QMouseEvent *)
 {
     this->ui->frame->setStyleSheet(QString("border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36); "));
     if(moved || !isCompleted) return;
-    this->hide();
+    this->close(); // this->hide();
     delete this;
 }
 
