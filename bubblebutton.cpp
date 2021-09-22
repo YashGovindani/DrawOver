@@ -92,7 +92,7 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     screenshotButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
     screenshotButton.setClickEvent(onScreenshotButtonClicked);
     clearButton.setStyleSheet(smallButtonStyleSheet);
-    clearButton.setIcon(QIcon(QPixmap(QString(""))));
+    clearButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/clear.png"))));
     clearButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     clearButton.setAttribute(Qt::WA_TranslucentBackground);
     clearButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
