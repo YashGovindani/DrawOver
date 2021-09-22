@@ -17,14 +17,14 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     bubblebutton.cpp \
+    glassboard.cpp \
     loadingview.cpp \
     main.cpp \
-    drawover.cpp \
     minibubblebutton.cpp
 
 HEADERS += \
     bubblebutton.h \
-    drawover.h \
+    glassboard.h \
     loadingview.h \
     minibubblebutton.h
 
