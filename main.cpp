@@ -10,7 +10,7 @@ int main(int argc, char *argv[])
     loadingView->show();
     loadingView->setInfo(QString("Initiating"));
     //DrawOver w;
-    loadingView->setInfo(QString("Ready to go !!!!"));
+    loadingView->setInfo(QString("Ready to go !!!!\nClick Here to continue"));
     loadingView->setCompleted(nullptr);
     return a.exec();
 }
