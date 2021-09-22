@@ -2,4 +2,8 @@
     <qresource prefix="/global/images">
         <file>logo.png</file>
     </qresource>
+    <qresource prefix="/bubble/images">
+        <file>pen.png</file>
+        <file>highLighter.png</file>
+    </qresource>
 </RCC>
