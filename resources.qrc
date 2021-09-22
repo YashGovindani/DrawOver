@@ -8,5 +8,6 @@
         <file>eraser.png</file>
         <file>clear.png</file>
         <file>backToWork.png</file>
+        <file>expand.png</file>
     </qresource>
 </RCC>

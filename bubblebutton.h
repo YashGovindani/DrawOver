@@ -25,7 +25,7 @@ private:
     MiniBubbleButton backToWorkButton;
     MiniBubbleButton clearButton;
     MiniBubbleButton eraserButton;
-    MiniBubbleButton button6;
+    MiniBubbleButton expandButton;
     QApplication *a;
 public:
     static BubbleButton * get(QWidget *loadingView = nullptr);

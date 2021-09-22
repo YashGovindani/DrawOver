@@ -36,6 +36,9 @@ void onEraserButtonClicked()
 void onPencButtonClicked()
 {}
 
+void onExpandButtonClicked()
+{}
+
 BubbleButton * BubbleButton::bubbleButton = nullptr;
 
 BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
@@ -103,11 +106,12 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     eraserButton.setAttribute(Qt::WA_TranslucentBackground);
     eraserButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
     eraserButton.setClickEvent(onEraserButtonClicked);
-    button6.setStyleSheet(smallButtonStyleSheet);
-    button6.setIcon(QIcon(QPixmap(QString(":/bubble/images/board.png"))));
-    button6.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    button6.setAttribute(Qt::WA_TranslucentBackground);
-    button6.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    expandButton.setStyleSheet(smallButtonStyleSheet);
+    expandButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/expand.png"))));
+    expandButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    expandButton.setAttribute(Qt::WA_TranslucentBackground);
+    expandButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    expandButton.setClickEvent(onExpandButtonClicked);
     expanded = false;
 }
 
@@ -126,7 +130,7 @@ void BubbleButton::compressAction()
     animation->setEndValue(startRect);
     animation->start(QPropertyAnimation::DeleteWhenStopped);
     QTimer::singleShot(100, this, [=](){
-        penButton.close();
+        backToWorkButton.close();
         QPropertyAnimation *animation = new QPropertyAnimation(&clearButton, "geometry", this);
         animation->setDuration(100);
         animation->setStartValue(clearButton.geometry());
@@ -136,11 +140,11 @@ void BubbleButton::compressAction()
             clearButton.close();
             QPropertyAnimation *animation = new QPropertyAnimation(&penButton, "geometry", this);
             animation->setDuration(100);
-            animation->setStartValue(backToWorkButton.geometry());
+            animation->setStartValue(penButton.geometry());
             animation->setEndValue(startRect);
             animation->start(QPropertyAnimation::DeleteWhenStopped);
             QTimer::singleShot(100, this, [=](){
-                backToWorkButton.close();
+                penButton.close();
                 QPropertyAnimation *animation = new QPropertyAnimation(&highLighterButton, "geometry", this);
                 animation->setDuration(100);
                 animation->setStartValue(highLighterButton.geometry());
@@ -155,12 +159,12 @@ void BubbleButton::compressAction()
                     animation->start(QPropertyAnimation::DeleteWhenStopped);
                     QTimer::singleShot(100, this, [=](){
                         eraserButton.close();
-                        QPropertyAnimation *animation = new QPropertyAnimation(&button6, "geometry", this);
+                        QPropertyAnimation *animation = new QPropertyAnimation(&expandButton, "geometry", this);
                         animation->setDuration(100);
                         animation->setStartValue(eraserButton.geometry());
                         animation->setEndValue(startRect);
                         animation->start(QPropertyAnimation::DeleteWhenStopped);
-                        QTimer::singleShot(100, this, [=](){button6.close();});
+                        QTimer::singleShot(100, this, [=](){expandButton.close();});
                     });
                 });
             });
@@ -250,7 +254,7 @@ void BubbleButton::onClick()
         animation->setStartValue(startRect);
         animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
         animation->start(QPropertyAnimation::DeleteWhenStopped);
-        penButton.show();
+        backToWorkButton.show();
         QTimer::singleShot(100, this, [=](){
             int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(2*22))/(double)(3*7))));
             int endY = startY - (int)(((double)expandedRadius)*sin(((double)(2*22))/(double)(3*7)));
@@ -268,7 +272,7 @@ void BubbleButton::onClick()
                 animation->setStartValue(startRect);
                 animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
                 animation->start(QPropertyAnimation::DeleteWhenStopped);
-                backToWorkButton.show();
+                penButton.show();
                 QTimer::singleShot(100, this, [=](){
                     int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(10*22))/(double)(9*7))));
                     int endY = startY - (int)(((double)expandedRadius)*sin(((double)(10*22))/(double)(9*7)));
@@ -290,12 +294,12 @@ void BubbleButton::onClick()
                         QTimer::singleShot(100, this, [=](){
                             int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(14*22))/(double)(9*7))));
                             int endY = startY - (int)(((double)expandedRadius)*sin(((double)(14*22))/(double)(9*7)));
-                            QPropertyAnimation *animation = new QPropertyAnimation(&button6, "geometry", this);
+                            QPropertyAnimation *animation = new QPropertyAnimation(&expandButton, "geometry", this);
                             animation->setDuration(100);
                             animation->setStartValue(startRect);
                             animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
                             animation->start(QPropertyAnimation::DeleteWhenStopped);
-                            button6.show();
+                            expandButton.show();
                         });
                     });
                 });
