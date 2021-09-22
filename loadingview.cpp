@@ -1,11 +1,13 @@
 #include "loadingview.h"
 #include "ui_loadingview.h"
+#include "bubblebutton.h"
 
 #include <QScreen>
 #include <QRect>
 #include <QGraphicsDropShadowEffect>
 #include <QTimer>
 #include <QDebug>
+#include <QPropertyAnimation>
 
 LoadingView::LoadingView(QWidget *parent) :
     QMainWindow(parent),
@@ -56,7 +58,7 @@ LoadingView::LoadingView(QWidget *parent) :
 void LoadingView::setInfo(QString str)
 {
     QTimer::singleShot(this->runTimeDuration, this, [=](){this->ui->infoLabel->setText(str);});
-    this->runTimeDuration += 300;
+    this->runTimeDuration += 200;
 }
 
 void LoadingView::timerEvent(QTimerEvent *)
@@ -88,8 +90,27 @@ void LoadingView::mouseReleaseEvent(QMouseEvent *)
 {
     this->ui->frame->setStyleSheet(QString("border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36); "));
     if(moved || !isCompleted || this->timerEventTime <= this->runTimeDuration) return;
-    this->close(); // this->hide();
-    delete this;
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QRect screenGeometry = screen->geometry();
+    int desktopWidth = screenGeometry.width();
+    int desktopHeight = screenGeometry.height();
+    int windowHeight = desktopHeight/10;
+    int windowWidth = desktopWidth/4;
+    int windowX = desktopWidth/2 - windowWidth/2;
+    int windowY = desktopHeight/2 - windowHeight/2;
+    this->setGeometry(0, 0, desktopWidth, desktopHeight);
+    this->ui->frame->setGeometry(windowX, windowY, windowWidth, windowHeight);
+    BubbleButton *bubbleButton = BubbleButton::get();
+    QPropertyAnimation *animation = new QPropertyAnimation(this->ui->frame, "geometry", this);
+    animation->setDuration(500);
+    animation->setStartValue(this->ui->frame->geometry());
+    animation->setEndValue(bubbleButton->geometry());
+    animation->start(QPropertyAnimation::DeleteWhenStopped);
+    QTimer::singleShot(500, this, [=](){
+        this->close();
+        bubbleButton->show();
+        delete this;
+    });
 }
 
 LoadingView::~LoadingView()
