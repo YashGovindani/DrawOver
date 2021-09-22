@@ -22,7 +22,7 @@ private:
     QString cornerRadius;
     MiniBubbleButton penButton;
     MiniBubbleButton highLighterButton;
-    MiniBubbleButton screenshotButton;
+    MiniBubbleButton backToWorkButton;
     MiniBubbleButton clearButton;
     MiniBubbleButton eraserButton;
     MiniBubbleButton button6;

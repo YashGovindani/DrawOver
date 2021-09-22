@@ -22,7 +22,7 @@ void onClearButtonClicked()
     });
 }
 
-void onScreenshotButtonClicked()
+void onBackToWorkButtonClicked()
 {}
 
 void onHighLighterButtonClicked()
@@ -85,12 +85,12 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     highLighterButton.setAttribute(Qt::WA_TranslucentBackground);
     highLighterButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
     highLighterButton.setClickEvent(onHighLighterButtonClicked);
-    screenshotButton.setStyleSheet(smallButtonStyleSheet);
-    screenshotButton.setIcon(QIcon(QPixmap(QString(""))));
-    screenshotButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    screenshotButton.setAttribute(Qt::WA_TranslucentBackground);
-    screenshotButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
-    screenshotButton.setClickEvent(onScreenshotButtonClicked);
+    backToWorkButton.setStyleSheet(smallButtonStyleSheet);
+    backToWorkButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/backToWork.png"))));
+    backToWorkButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    backToWorkButton.setAttribute(Qt::WA_TranslucentBackground);
+    backToWorkButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    backToWorkButton.setClickEvent(onBackToWorkButtonClicked);
     clearButton.setStyleSheet(smallButtonStyleSheet);
     clearButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/clear.png"))));
     clearButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
@@ -120,7 +120,7 @@ void BubbleButton::compressAction()
     int smallButtonWidth = eraserButton.width();
     int smallButtonHeight = eraserButton.height();
     QRect startRect(startX, startY, smallButtonWidth, smallButtonHeight);
-    QPropertyAnimation *animation = new QPropertyAnimation(&screenshotButton, "geometry", this);
+    QPropertyAnimation *animation = new QPropertyAnimation(&backToWorkButton, "geometry", this);
     animation->setDuration(100);
     animation->setStartValue(clearButton.geometry());
     animation->setEndValue(startRect);
@@ -136,11 +136,11 @@ void BubbleButton::compressAction()
             clearButton.close();
             QPropertyAnimation *animation = new QPropertyAnimation(&penButton, "geometry", this);
             animation->setDuration(100);
-            animation->setStartValue(screenshotButton.geometry());
+            animation->setStartValue(backToWorkButton.geometry());
             animation->setEndValue(startRect);
             animation->start(QPropertyAnimation::DeleteWhenStopped);
             QTimer::singleShot(100, this, [=](){
-                screenshotButton.close();
+                backToWorkButton.close();
                 QPropertyAnimation *animation = new QPropertyAnimation(&highLighterButton, "geometry", this);
                 animation->setDuration(100);
                 animation->setStartValue(highLighterButton.geometry());
@@ -245,7 +245,7 @@ void BubbleButton::onClick()
         QRect startRect(startX, startY, smallButtonWidth, smallButtonHeight);
         int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(4*22))/(double)(9*7))));
         int endY = startY - (int)(((double)expandedRadius)*sin(((double)(4*22))/(double)(9*7)));
-        QPropertyAnimation *animation = new QPropertyAnimation(&screenshotButton, "geometry", this);
+        QPropertyAnimation *animation = new QPropertyAnimation(&backToWorkButton, "geometry", this);
         animation->setDuration(100);
         animation->setStartValue(startRect);
         animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
@@ -268,7 +268,7 @@ void BubbleButton::onClick()
                 animation->setStartValue(startRect);
                 animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
                 animation->start(QPropertyAnimation::DeleteWhenStopped);
-                screenshotButton.show();
+                backToWorkButton.show();
                 QTimer::singleShot(100, this, [=](){
                     int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(10*22))/(double)(9*7))));
                     int endY = startY - (int)(((double)expandedRadius)*sin(((double)(10*22))/(double)(9*7)));
