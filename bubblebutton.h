@@ -20,10 +20,12 @@ private:
     bool moved;
     bool expanded;
     QString cornerRadius;
+    MiniBubbleButton button1;
     MiniBubbleButton newBoardButton;
     MiniBubbleButton screenshotButton;
     MiniBubbleButton backToApplicationButton;
     MiniBubbleButton quitButton;
+    MiniBubbleButton button6;
     QApplication *a;
 public:
     static BubbleButton * get(QWidget *loadingView = nullptr);
