@@ -23,8 +23,8 @@ private:
     MiniBubbleButton penButton;
     MiniBubbleButton highLighterButton;
     MiniBubbleButton screenshotButton;
-    MiniBubbleButton backToApplicationButton;
-    MiniBubbleButton quitButton;
+    MiniBubbleButton clearButton;
+    MiniBubbleButton eraserButton;
     MiniBubbleButton button6;
     QApplication *a;
 public:

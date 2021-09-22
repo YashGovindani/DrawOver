@@ -5,5 +5,6 @@
     <qresource prefix="/bubble/images">
         <file>pen.png</file>
         <file>highLighter.png</file>
+        <file>eraser.png</file>
     </qresource>
 </RCC>
