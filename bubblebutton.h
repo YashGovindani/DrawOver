@@ -21,7 +21,7 @@ private:
     bool expanded;
     QString cornerRadius;
     MiniBubbleButton penButton;
-    MiniBubbleButton newBoardButton;
+    MiniBubbleButton highLighterButton;
     MiniBubbleButton screenshotButton;
     MiniBubbleButton backToApplicationButton;
     MiniBubbleButton quitButton;

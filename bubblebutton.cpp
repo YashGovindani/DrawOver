@@ -25,7 +25,7 @@ void onBackToApplicationButtonClicked()
 void onScreenshotButtonClicked()
 {}
 
-void onNewBoardButtonClicked()
+void onHighLighterButtonClicked()
 {}
 
 void onQuitButtonClicked()
@@ -79,12 +79,12 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     penButton.setAttribute(Qt::WA_TranslucentBackground);
     penButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
     penButton.setClickEvent(onPencButtonClicked);
-    newBoardButton.setStyleSheet(smallButtonStyleSheet);
-    newBoardButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/highLighter.png"))));
-    newBoardButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
-    newBoardButton.setAttribute(Qt::WA_TranslucentBackground);
-    newBoardButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
-    newBoardButton.setClickEvent(onNewBoardButtonClicked);
+    highLighterButton.setStyleSheet(smallButtonStyleSheet);
+    highLighterButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/highLighter.png"))));
+    highLighterButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    highLighterButton.setAttribute(Qt::WA_TranslucentBackground);
+    highLighterButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
+    highLighterButton.setClickEvent(onHighLighterButtonClicked);
     screenshotButton.setStyleSheet(smallButtonStyleSheet);
     screenshotButton.setIcon(QIcon(QPixmap(QString(""))));
     screenshotButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
@@ -141,13 +141,13 @@ void BubbleButton::compressAction()
             animation->start(QPropertyAnimation::DeleteWhenStopped);
             QTimer::singleShot(100, this, [=](){
                 screenshotButton.close();
-                QPropertyAnimation *animation = new QPropertyAnimation(&newBoardButton, "geometry", this);
+                QPropertyAnimation *animation = new QPropertyAnimation(&highLighterButton, "geometry", this);
                 animation->setDuration(100);
-                animation->setStartValue(newBoardButton.geometry());
+                animation->setStartValue(highLighterButton.geometry());
                 animation->setEndValue(startRect);
                 animation->start(QPropertyAnimation::DeleteWhenStopped);
                 QTimer::singleShot(100, this, [=](){
-                    newBoardButton.close();
+                    highLighterButton.close();
                     QPropertyAnimation *animation = new QPropertyAnimation(&quitButton, "geometry", this);
                     animation->setDuration(100);
                     animation->setStartValue(quitButton.geometry());
@@ -272,12 +272,12 @@ void BubbleButton::onClick()
                 QTimer::singleShot(100, this, [=](){
                     int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(10*22))/(double)(9*7))));
                     int endY = startY - (int)(((double)expandedRadius)*sin(((double)(10*22))/(double)(9*7)));
-                    QPropertyAnimation *animation = new QPropertyAnimation(&newBoardButton, "geometry", this);
+                    QPropertyAnimation *animation = new QPropertyAnimation(&highLighterButton, "geometry", this);
                     animation->setDuration(100);
                     animation->setStartValue(startRect);
                     animation->setEndValue(QRect(endX, endY, smallButtonWidth, smallButtonHeight));
                     animation->start(QPropertyAnimation::DeleteWhenStopped);
-                    newBoardButton.show();
+                    highLighterButton.show();
                     QTimer::singleShot(100, this, [=](){
                         int endX = startX + invert*((int)(((double)expandedRadius)*cos(((double)(4*22))/(double)(3*7))));
                         int endY = startY - (int)(((double)expandedRadius)*sin(((double)(4*22))/(double)(3*7)));
