@@ -7,9 +7,10 @@
 class GlassBoard:public QLabel
 {
 private:
+    static GlassBoard *glassBoard;
     GlassBoard(QWidget *loadingView);
 public:
-    GlassBoard * get(QWidget *loadingView = nullptr);
+    static GlassBoard * get(QWidget *loadingView = nullptr);
     void mousePressEvent(QMouseEvent *ev) override;
     void mouseMoveEvent(QMouseEvent *ev) override;
 };
