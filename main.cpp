@@ -2,6 +2,7 @@
 #include "loadingview.h"
 
 #include <QApplication>
+#include "bubblebutton.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,6 +11,8 @@ int main(int argc, char *argv[])
     loadingView->show();
     loadingView->setInfo(QString("Initiating"));
     //DrawOver w;
+    BubbleButton *bubbleButton = BubbleButton::get(loadingView);
+    bubbleButton->setA(&a);
     loadingView->setInfo(QString("Ready to go !!!!\nClick Here to continue"));
     loadingView->setCompleted(nullptr);
     return a.exec();
