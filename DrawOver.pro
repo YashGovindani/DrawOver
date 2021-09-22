@@ -19,12 +19,14 @@ SOURCES += \
     bubblebutton.cpp \
     loadingview.cpp \
     main.cpp \
-    drawover.cpp
+    drawover.cpp \
+    minibubblebutton.cpp
 
 HEADERS += \
     bubblebutton.h \
     drawover.h \
-    loadingview.h
+    loadingview.h \
+    minibubblebutton.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
