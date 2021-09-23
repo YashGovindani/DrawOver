@@ -50,12 +50,16 @@ void GlassBoard::mouseMoveEvent(QMouseEvent *ev)
 
 void GlassBoard::acceptInput()
 {
-    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+    this->setWindowFlags(Qt::FramelessWindowHint);
+    this->close();
+    this->show();
 }
 
 void GlassBoard::ignoreInput()
 {
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowTransparentForInput);
+    this->close();
+    this->show();
 }
 
 GlassBoard::~GlassBoard()
