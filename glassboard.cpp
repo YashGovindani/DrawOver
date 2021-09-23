@@ -62,6 +62,18 @@ void GlassBoard::ignoreInput()
     this->show();
 }
 
+void GlassBoard::clearAction()
+{
+    QScreen *screen = QGuiApplication::primaryScreen();
+    QPixmap *newPixMap = new QPixmap(screen->geometry().width(), screen->geometry().height());
+    newPixMap->fill(Qt::transparent);
+    this->setPixmap(*newPixMap);
+    delete this->fixedDrawing;
+    this->fixedDrawing = newPixMap;
+    this->close();
+    this->show();
+}
+
 GlassBoard::~GlassBoard()
 {
     delete fixedDrawing;

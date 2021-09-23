@@ -20,6 +20,7 @@ public:
     void mouseMoveEvent(QMouseEvent *ev) override;
     void acceptInput();
     void ignoreInput();
+    void clearAction();
     ~GlassBoard();
 };
 
