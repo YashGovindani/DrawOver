@@ -11,6 +11,7 @@
 #include <QTimer>
 #include <math.h>
 #include <QDebug>
+#include "glassboard.h"
 
 void onClearButtonClicked()
 {
@@ -23,18 +24,22 @@ void onClearButtonClicked()
 }
 
 void onBackToWorkButtonClicked()
-{}
+{
+    GlassBoard::get()->ignoreInput();
+}
 
 void onHighLighterButtonClicked()
 {}
 
 void onEraserButtonClicked()
 {
-    BubbleButton::get()->getA()->quit();
+    //BubbleButton::get()->getA()->quit();
 }
 
 void onPencButtonClicked()
-{}
+{
+    GlassBoard::get()->acceptInput();
+}
 
 void onExpandButtonClicked()
 {}
