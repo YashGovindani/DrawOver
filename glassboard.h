@@ -32,6 +32,7 @@ public:
     void clearAction();
     void usePen();
     void useEraser();
+    void useHighLighter();
     ~GlassBoard();
 };
 

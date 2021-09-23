@@ -106,6 +106,12 @@ void GlassBoard::useEraser()
     this->painterCompositionMode = QPainter::CompositionMode_Clear;
 }
 
+void GlassBoard::useHighLighter()
+{
+    this->toBeUsed = this->highLighter;
+    this->painterCompositionMode = QPainter::CompositionMode_SourceOver;
+}
+
 GlassBoard::~GlassBoard()
 {
     delete fixedDrawing;
