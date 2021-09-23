@@ -9,5 +9,6 @@
         <file>clear.png</file>
         <file>backToWork.png</file>
         <file>expand.png</file>
+        <file>close.png</file>
     </qresource>
 </RCC>

@@ -45,7 +45,10 @@ void onPencButtonClicked()
 }
 
 void onExpandButtonClicked()
-{}
+{
+    // to be changed in phase 2
+    BubbleButton::get()->getA()->quit();
+}
 
 BubbleButton * BubbleButton::bubbleButton = nullptr;
 
@@ -115,7 +118,8 @@ BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
     eraserButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
     eraserButton.setClickEvent(onEraserButtonClicked);
     expandButton.setStyleSheet(smallButtonStyleSheet);
-    expandButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/expand.png"))));
+    //expandButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/expand.png"))));
+    expandButton.setIcon(QIcon(QPixmap(QString(":/bubble/images/close.png"))));
     expandButton.setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
     expandButton.setAttribute(Qt::WA_TranslucentBackground);
     expandButton.setGeometry(smallButtonX, smallButtonY, smallButtonWidth, smallButtonHeight);
