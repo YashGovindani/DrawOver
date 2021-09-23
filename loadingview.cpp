@@ -35,7 +35,7 @@ LoadingView::LoadingView(QWidget *parent) :
     cornerRadius = QString::number(windowHeight/2);
     this->ui->frame->setStyleSheet(QString("border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36); "));
     this->ui->frame->setGeometry(shadowRadius, shadowRadius, windowWidth, windowHeight);
-    this->ui->frame->setStyleSheet(QString("border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36); "));
+    this->ui->frame->setStyleSheet(QString("QFrame{border-top-left-radius : ") + cornerRadius + QString("; border-top-right-radius : ") + cornerRadius + QString("; border-bottom-right-radius : ") + cornerRadius + QString("; border-bottom-left-radius : ") + cornerRadius + QString("; background-color : rgb(32, 33, 36);} QFrame:hover{background-color : rgb(25, 25, 25);}"));
     this->ui->logoLabel->setGeometry(0, 0, (windowWidth*2)/5, windowHeight - (windowHeight/6));
     this->ui->logoLabel->setAlignment(Qt::AlignCenter);
     this->ui->logoLabel->setPixmap(QPixmap(QString(":/global/images/logo.png")).scaled((windowHeight*2)/3, (windowHeight*2)/3));
