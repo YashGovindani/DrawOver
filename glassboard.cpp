@@ -1,6 +1,5 @@
 #include "glassboard.h"
 #include "loadingview.h"
-
 #include <QGuiApplication>
 #include <QScreen>
 #include <QRect>
@@ -47,6 +46,16 @@ void GlassBoard::mouseMoveEvent(QMouseEvent *ev)
     startX = endX;
     startY = endY;
     setPixmap(*fixedDrawing);
+}
+
+void GlassBoard::acceptInput()
+{
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+}
+
+void GlassBoard::ignoreInput()
+{
+    this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowTransparentForInput);
 }
 
 GlassBoard::~GlassBoard()

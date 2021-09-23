@@ -18,6 +18,8 @@ public:
     static GlassBoard * get(QWidget *loadingView = nullptr);
     void mousePressEvent(QMouseEvent *ev) override;
     void mouseMoveEvent(QMouseEvent *ev) override;
+    void acceptInput();
+    void ignoreInput();
     ~GlassBoard();
 };
 
