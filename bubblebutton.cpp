@@ -28,12 +28,16 @@ void onHighLighterButtonClicked()
 
 void onEraserButtonClicked()
 {
-    //BubbleButton::get()->getA()->quit();
+    GlassBoard *glassBoard = GlassBoard::get();
+    glassBoard->useEraser();
+    glassBoard->acceptInput();
 }
 
 void onPencButtonClicked()
 {
-    GlassBoard::get()->acceptInput();
+    GlassBoard *glassBoard = GlassBoard::get();
+    glassBoard->usePen();
+    glassBoard->acceptInput();
 }
 
 void onExpandButtonClicked()
