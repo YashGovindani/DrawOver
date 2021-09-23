@@ -15,12 +15,7 @@
 
 void onClearButtonClicked()
 {
-    BubbleButton *bubbleButton = BubbleButton::get();
-    bubbleButton->compressAction();
-    QTimer::singleShot(400, bubbleButton, [=](){
-        bubbleButton->close();
-        //Presentation::get(bubble)->showFullScreenView();
-    });
+    GlassBoard::get()->clearAction();
 }
 
 void onBackToWorkButtonClicked()
