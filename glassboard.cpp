@@ -16,8 +16,7 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
     QScreen *screen = QGuiApplication::primaryScreen();
     this->setGeometry(screen->geometry());
     this->setWindowFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint | Qt::WindowDoesNotAcceptFocus | Qt::WindowTransparentForInput);
-    this->setStyleSheet(QString("background-color : rgba(30, 30, 30, 100);"));
-    this->setAttribute(Qt::WA_TranslucentBackground);
+    this->setStyleSheet(QString("background-color : rgba(0, 0, 0, 0);"));
     this->fixedDrawing = new QPixmap(screen->geometry().width(), screen->geometry().height());
     this->fixedDrawing->fill(Qt::transparent);
     this->setPixmap(*(this->fixedDrawing));
