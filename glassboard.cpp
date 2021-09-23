@@ -20,6 +20,15 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
     this->fixedDrawing->fill(Qt::transparent);
     this->setPixmap(*(this->fixedDrawing));
     lv->setInfo(QString("Initiated Glass Board"));
+    this->eraser = new QPen(Qt::transparent);
+    this->eraser->setWidth(15);
+    this->eraser->setCapStyle(Qt::RoundCap);
+    this->eraser->setJoinStyle(Qt::RoundJoin);
+    this->pen = new QPen(Qt::red);
+    this->pen->setWidth(5);
+    this->pen->setCapStyle(Qt::RoundCap);
+    this->pen->setJoinStyle(Qt::RoundJoin);
+    this->toBeUsed = this->pen;
 }
 
 GlassBoard *GlassBoard::get(QWidget *loadingView)
@@ -39,13 +48,21 @@ void GlassBoard::mouseMoveEvent(QMouseEvent *ev)
     endX = ev->x();
     endY = ev->y();
     QPainter painter(fixedDrawing);
-    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.setPen(*this->toBeUsed);
+    if(this->toBeUsed == this->pen) painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    else painter.setCompositionMode(QPainter::CompositionMode_Clear);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.drawLine(startX, startY, endX, endY);
     painter.end();
     startX = endX;
     startY = endY;
     setPixmap(*fixedDrawing);
+}
+
+void GlassBoard::mouseReleaseEvent(QMouseEvent *)
+{
+    this->close();
+    this->show();
 }
 
 void GlassBoard::acceptInput()
@@ -74,7 +91,18 @@ void GlassBoard::clearAction()
     this->show();
 }
 
+void GlassBoard::usePen()
+{
+    this->toBeUsed = this->pen;
+}
+
+void GlassBoard::useEraser()
+{
+    this->toBeUsed = this->eraser;
+}
+
 GlassBoard::~GlassBoard()
 {
     delete fixedDrawing;
+    delete eraser;
 }

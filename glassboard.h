@@ -3,6 +3,8 @@
 
 #include <QLabel>
 #include <QMouseEvent>
+#include <QPen>
+#include <QColor>
 
 class GlassBoard:public QLabel
 {
@@ -14,13 +16,19 @@ private:
     int startY;
     int endX;
     int endY;
+    QPen *eraser;
+    QPen *pen;
+    QPen *toBeUsed;
 public:
     static GlassBoard * get(QWidget *loadingView = nullptr);
     void mousePressEvent(QMouseEvent *ev) override;
     void mouseMoveEvent(QMouseEvent *ev) override;
+    void mouseReleaseEvent(QMouseEvent *ev) override;
     void acceptInput();
     void ignoreInput();
     void clearAction();
+    void usePen();
+    void useEraser();
     ~GlassBoard();
 };
 
