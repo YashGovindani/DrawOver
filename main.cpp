@@ -1,8 +1,7 @@
-#include "drawover.h"
 #include "loadingview.h"
-
 #include <QApplication>
 #include "bubblebutton.h"
+#include "glassboard.h"
 
 int main(int argc, char *argv[])
 {
@@ -10,10 +9,11 @@ int main(int argc, char *argv[])
     LoadingView *loadingView = new LoadingView(nullptr);
     loadingView->show();
     loadingView->setInfo(QString("Initiating"));
-    //DrawOver w;
     BubbleButton *bubbleButton = BubbleButton::get(loadingView);
     bubbleButton->setA(&a);
+    GlassBoard *glassBoard = GlassBoard::get(loadingView);
     loadingView->setInfo(QString("Ready to go !!!!\nClick Here to continue"));
     loadingView->setCompleted();
+    glassBoard->show();
     return a.exec();
 }
