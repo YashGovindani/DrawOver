@@ -19,6 +19,7 @@ private:
     int endY;
     QPen *eraser;
     QPen *pen;
+    QPen *highLighter;
     QPen *toBeUsed;
     QPainter::CompositionMode painterCompositionMode;
 public:
