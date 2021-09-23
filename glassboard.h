@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QPen>
 #include <QColor>
+#include <QPainter>
 
 class GlassBoard:public QLabel
 {
@@ -19,6 +20,7 @@ private:
     QPen *eraser;
     QPen *pen;
     QPen *toBeUsed;
+    QPainter::CompositionMode painterCompositionMode;
 public:
     static GlassBoard * get(QWidget *loadingView = nullptr);
     void mousePressEvent(QMouseEvent *ev) override;

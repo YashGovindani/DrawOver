@@ -29,6 +29,7 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
     this->pen->setCapStyle(Qt::RoundCap);
     this->pen->setJoinStyle(Qt::RoundJoin);
     this->toBeUsed = this->pen;
+    this->painterCompositionMode = QPainter::CompositionMode_SourceOver;
 }
 
 GlassBoard *GlassBoard::get(QWidget *loadingView)
@@ -49,8 +50,7 @@ void GlassBoard::mouseMoveEvent(QMouseEvent *ev)
     endY = ev->y();
     QPainter painter(fixedDrawing);
     painter.setPen(*this->toBeUsed);
-    if(this->toBeUsed == this->pen) painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    else painter.setCompositionMode(QPainter::CompositionMode_Clear);
+    painter.setCompositionMode(this->painterCompositionMode);
     painter.setRenderHint(QPainter::Antialiasing);
     painter.drawLine(startX, startY, endX, endY);
     painter.end();
@@ -94,11 +94,13 @@ void GlassBoard::clearAction()
 void GlassBoard::usePen()
 {
     this->toBeUsed = this->pen;
+    this->painterCompositionMode = QPainter::CompositionMode_SourceOver;
 }
 
 void GlassBoard::useEraser()
 {
     this->toBeUsed = this->eraser;
+    this->painterCompositionMode = QPainter::CompositionMode_Clear;
 }
 
 GlassBoard::~GlassBoard()
