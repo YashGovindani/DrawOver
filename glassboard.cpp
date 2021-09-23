@@ -18,7 +18,8 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
 
 GlassBoard *GlassBoard::get(QWidget *loadingView)
 {
-
+    if(!glassBoard) glassBoard = new GlassBoard(loadingView);
+    return glassBoard;
 }
 
 void GlassBoard::mousePressEvent(QMouseEvent *ev)
