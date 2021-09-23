@@ -20,6 +20,7 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
     this->setAttribute(Qt::WA_TranslucentBackground);
     this->fixedDrawing = new QPixmap(screen->geometry().width(), screen->geometry().height());
     this->fixedDrawing->fill(Qt::transparent);
+    this->setPixmap(*(this->fixedDrawing));
     lv->setInfo(QString("Initiated Glass Board"));
 }
 
@@ -31,15 +32,25 @@ GlassBoard *GlassBoard::get(QWidget *loadingView)
 
 void GlassBoard::mousePressEvent(QMouseEvent *ev)
 {
-
+    startX = ev->x();
+    startY = ev->y();
 }
 
 void GlassBoard::mouseMoveEvent(QMouseEvent *ev)
 {
-
+    endX = ev->x();
+    endY = ev->y();
+    QPainter painter(fixedDrawing);
+    painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.drawLine(startX, startY, endX, endY);
+    painter.end();
+    startX = endX;
+    startY = endY;
+    setPixmap(*fixedDrawing);
 }
 
 GlassBoard::~GlassBoard()
 {
-
+    delete fixedDrawing;
 }

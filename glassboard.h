@@ -10,6 +10,10 @@ private:
     static GlassBoard *glassBoard;
     GlassBoard(QWidget *loadingView);
     QPixmap *fixedDrawing;
+    int startX;
+    int startY;
+    int endX;
+    int endY;
 public:
     static GlassBoard * get(QWidget *loadingView = nullptr);
     void mousePressEvent(QMouseEvent *ev) override;
