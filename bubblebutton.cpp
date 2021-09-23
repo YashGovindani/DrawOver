@@ -24,7 +24,11 @@ void onBackToWorkButtonClicked()
 }
 
 void onHighLighterButtonClicked()
-{}
+{
+    GlassBoard *glassBoard = GlassBoard::get();
+    glassBoard->useHighLighter();
+    glassBoard->acceptInput();
+}
 
 void onEraserButtonClicked()
 {

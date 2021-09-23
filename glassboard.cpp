@@ -28,7 +28,7 @@ GlassBoard::GlassBoard(QWidget *loadingView):QLabel(nullptr)
     this->pen->setWidth(5);
     this->pen->setCapStyle(Qt::RoundCap);
     this->pen->setJoinStyle(Qt::RoundJoin);
-    this->highLighter = new QPen(QColor(237, 98,160, 130));
+    this->highLighter = new QPen(QColor(237, 98,160, 30));
     this->highLighter->setWidth(15);
     this->highLighter->setJoinStyle(Qt::RoundJoin);
     this->toBeUsed = this->pen;
@@ -109,7 +109,7 @@ void GlassBoard::useEraser()
 void GlassBoard::useHighLighter()
 {
     this->toBeUsed = this->highLighter;
-    this->painterCompositionMode = QPainter::CompositionMode_SourceOver;
+    this->painterCompositionMode = QPainter::CompositionMode_Xor;
 }
 
 GlassBoard::~GlassBoard()
