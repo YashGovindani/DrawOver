@@ -54,6 +54,7 @@ BubbleButton * BubbleButton::bubbleButton = nullptr;
 
 BubbleButton::BubbleButton(QWidget *loadingView):QPushButton()
 {
+    this->setToolTip(QString("DrawOver"));
     LoadingView *loadingViewPointer = (LoadingView *)loadingView;
     if(loadingViewPointer) loadingViewPointer->setInfo(QString("Creating bubble view"));
     this->setWindowFlags(Qt::Window | Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
