@@ -13,7 +13,6 @@ int main(int argc, char *argv[])
     BubbleButton *bubbleButton = BubbleButton::get(loadingView);
     bubbleButton->setA(&a);
     GlassBoard *glassBoard = GlassBoard::get(loadingView);
-    loadingView->setInfo(QString("Ready to go !!!!\nClick Here to continue"));
     loadingView->setCompleted();
     glassBoard->show();
     return a.exec();

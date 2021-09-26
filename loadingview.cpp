@@ -66,6 +66,7 @@ void LoadingView::timerEvent(QTimerEvent *)
     this->timerEventTime += 2000;
     if(this->isCompleted && this->timerEventTime > this->runTimeDuration)
     {
+        this->ui->infoLabel->setText(QString("Ready to go !!!!\nClick Here to continue"));
         killTimer(this->timerId);
     }
 }
