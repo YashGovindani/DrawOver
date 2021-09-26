@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+    a.setWindowIcon(QIcon(QString(":/global/images/d.icns")));
     LoadingView *loadingView = new LoadingView(nullptr);
     loadingView->show();
     loadingView->setInfo(QString("Initiating"));

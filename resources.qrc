@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/global/images">
         <file>logo.png</file>
+        <file>d.icns</file>
     </qresource>
     <qresource prefix="/bubble/images">
         <file>pen.png</file>
